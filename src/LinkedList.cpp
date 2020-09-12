@@ -4,7 +4,7 @@
 
 Node::Node(int val) : val(val), next(nullptr) { }
 
-Node::Node() : val(0), next(nullptr) { }
+//Node::Node() : val(0), next(nullptr) { }
 // Node::~Node() {
 //     delete [] this;
 // }
@@ -40,14 +40,14 @@ LinkedList::LinkedList() {
 }
 
 
-void LinkedList::append(int val) {
+void LinkedList::push_back(int val) {
 	Node *temp = new Node(val);
 	tail->next = temp;
 	tail = temp;
 	length++;
 }
 
-void LinkedList::prepend(int val) {
+void LinkedList::push_front(int val) {
 	Node *temp = new Node(val);
 	temp->next = head;
 	head = temp;
@@ -70,9 +70,9 @@ void LinkedList::insert(int index, int val) {
 	LinkedList *l = this;
 	Node *t = new Node(val);
 	if(index > length) {
-		l->append(val);
+		l->push_back(val);
 	} else if(index == 0) {
-		l->prepend(val);
+		l->push_front(val);
 	} else {
 		index -= 1;
 		while(index--) {
@@ -123,3 +123,34 @@ void LinkedList::remove(int index) {
 	length--;
 }
 
+NodeIterator LinkedList::begin() {
+	return NodeIterator(head);
+}
+
+NodeIterator LinkedList::end() {
+	return NodeIterator(tail);
+}
+
+NodeIterator::NodeIterator(NodeIterator& iterator) {
+	itr = iterator.itr;
+}
+
+void NodeIterator::operator++() {
+	if (itr->next != nullptr)
+		itr = itr->next;
+}
+
+NodeIterator::NodeIterator(Node *p) {
+	itr = p;
+}
+
+bool NodeIterator::operator!=(const NodeIterator& iterator) {
+	if(itr == iterator.itr)
+		return false;
+	else
+		return true;
+}
+
+int NodeIterator::operator*() {
+	return itr->val;
+}
