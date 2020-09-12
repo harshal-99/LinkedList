@@ -47,6 +47,7 @@ public:
 	void remove(int index);
 
 	Node *traverse(int index);
+	int size();
 
 	friend std::ostream &operator<<(std::ostream &os, const LinkedList &l);
 

@@ -1,9 +1,9 @@
 #include "../include/LinkedList.hpp"
 #include <catch2/catch.hpp>
+#include <vector>
+LinkedList list(1);
 
 TEST_CASE("LinkedList") {
-	LinkedList list(1);
-
 	SECTION("push_back") {
 		list.push_back(2);
 		auto l = list.traverse(0);
@@ -16,9 +16,14 @@ TEST_CASE("LinkedList") {
 		list.push_back(4);
 		list.push_back(5);
 	}
-//	SECTION("Support Range Based for loop") {
-//	}
-	for(auto i : list) {
-		std::cout << i << " ";
+
+	SECTION("Support Range Based for loop") {
+		std::vector<int> v(6);
+		std::vector<int> u {1,2,3,4,5};
+		for(int i : list) {
+			std::cout << i << " ";
+			v.at(i) = i;
+		}
+		REQUIRE(v == u);
 	}
 }

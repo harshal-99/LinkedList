@@ -131,6 +131,10 @@ NodeIterator LinkedList::end() {
 	return NodeIterator(nullptr);
 }
 
+int LinkedList::size() {
+	return length;
+}
+
 NodeIterator::NodeIterator(NodeIterator& iterator) {
 	itr = iterator.itr;
 }
