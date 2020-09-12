@@ -128,7 +128,7 @@ NodeIterator LinkedList::begin() {
 }
 
 NodeIterator LinkedList::end() {
-	return NodeIterator(tail);
+	return NodeIterator(nullptr);
 }
 
 NodeIterator::NodeIterator(NodeIterator& iterator) {
@@ -136,8 +136,7 @@ NodeIterator::NodeIterator(NodeIterator& iterator) {
 }
 
 void NodeIterator::operator++() {
-	if (itr->next != nullptr)
-		itr = itr->next;
+	itr = itr->next;
 }
 
 NodeIterator::NodeIterator(Node *p) {
