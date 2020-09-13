@@ -4,7 +4,7 @@ struct Node;
 struct NodeIterator;
 
 struct NodeIterator {
-	NodeIterator(NodeIterator& iterator);
+	[[maybe_unused]] NodeIterator(NodeIterator& iterator);
 	NodeIterator(Node* p);
 
 	void operator++();
@@ -21,37 +21,32 @@ struct Node {
 	Node *next;
 
 	explicit Node(int val);
-
-	Node() = default;
-	//  TODO Implement Node Destructor
+	Node();
+	~Node() = default;
 };
 
 class LinkedList : public Node {
 private:
 	Node *head;
 	Node *tail;
-	int length;
+	size_t length{};
 public:
+
 	explicit LinkedList(int val);
-
 	LinkedList();
-
-	~LinkedList(); // TODO Implement Destructor
+	~LinkedList() = default;
 
 	void push_back(int val);
-
 	void push_front(int val);
-
 	void insert(int index, int val);
-
 	void remove(int index);
-
-	Node *traverse(int index);
-	int size();
+	Node *traverse(size_t index);
+	[[maybe_unused]] int size() const;
 
 	friend std::ostream &operator<<(std::ostream &os, const LinkedList &l);
 
+	NodeIterator begin() const;
+	NodeIterator end() const;
 	NodeIterator begin();
 	NodeIterator end();
-
 };

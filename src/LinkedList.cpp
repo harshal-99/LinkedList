@@ -2,7 +2,13 @@
 #include "../include/LinkedList.hpp"
 
 
-Node::Node(int val) : val(val), next(nullptr) { }
+Node::Node(int val) : val(val), next(nullptr) {
+
+}
+
+Node::Node() : next(nullptr), val(0){
+
+}
 
 //Node::Node() : val(0), next(nullptr) { }
 // Node::~Node() {
@@ -17,26 +23,23 @@ LinkedList::LinkedList(int val) {
 	length = 0;
 }
 
-LinkedList::~LinkedList() {
-	if(head == tail) {
-//        Node::~Node();
-		delete[] this;
-	} else {
-		Node *t1 = head;
-		Node *t2 = t1->next;
-		while(t2 != nullptr) {
-			delete[] t1;
-			t1 = t2;
-			t2 = t2->next;
-		}
-	}
-}
+//LinkedList::~LinkedList() {
+//	if(head == tail) {
+//		Node::~Node();
+////		delete[] this;
+//	} else {
+//		Node *t1 = head;
+//		Node *t2 = t1->next;
+//		while(t2 != nullptr) {
+//			delete[] t1;
+//			t1 = t2;
+//			t2 = t2->next;
+//		}
+//	}
+//}
 
-LinkedList::LinkedList() {
-	Node *temp = new Node();
-	head = temp;
-	tail = temp;
-	length = 0;
+LinkedList::LinkedList(): length(1){
+	head = tail =  new Node();
 }
 
 
@@ -83,7 +86,7 @@ void LinkedList::insert(int index, int val) {
 	}
 }
 
-Node *LinkedList::traverse(int index) {
+Node *LinkedList::traverse(size_t index) {
 	if(index == 0) return head;
 	else if(index > length) return tail;
 	else {
@@ -131,11 +134,19 @@ NodeIterator LinkedList::end() {
 	return NodeIterator(nullptr);
 }
 
-int LinkedList::size() {
+[[maybe_unused]] int LinkedList::size() const {
 	return length;
 }
 
-NodeIterator::NodeIterator(NodeIterator& iterator) {
+NodeIterator LinkedList::begin() const {
+	return head;
+}
+
+NodeIterator LinkedList::end() const {
+	return NodeIterator(nullptr);
+}
+
+[[maybe_unused]] NodeIterator::NodeIterator(NodeIterator& iterator) {
 	itr = iterator.itr;
 }
 
