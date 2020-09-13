@@ -18,11 +18,10 @@ TEST_CASE("LinkedList") {
 	}
 
 	SECTION("Support Range Based for loop") {
-		std::vector<int> v(6);
+		std::vector<int> v;
 		std::vector<int> u {1,2,3,4,5};
 		for(int i : list) {
-			std::cout << i << " ";
-			v.at(i) = i;
+			v.push_back(i);
 		}
 		REQUIRE(v == u);
 	}
