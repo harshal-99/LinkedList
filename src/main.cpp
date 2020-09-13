@@ -3,7 +3,10 @@
 
 int main() {
 	LinkedList a;
-	a.push_back(1);
+	std::cout << a << "\n";
+	a.remove(0);
+	std::cout << a << "\n";
+	a.push_back(66);
 	a.push_back(2);
 	a.push_back(3);
 	a.push_back(4);
@@ -13,4 +16,5 @@ int main() {
 	for(int i : a) {
 		v.push_back(i);
 	}
+	std::cout << a;
 }

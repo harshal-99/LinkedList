@@ -6,22 +6,16 @@ Node::Node(int val) : val(val), next(nullptr) {
 
 }
 
-Node::Node() : next(nullptr), val(0){
+Node::Node() : next(nullptr) {
 
 }
 
-//Node::Node() : val(0), next(nullptr) { }
-// Node::~Node() {
-//     delete [] this;
-// }
-
-
-LinkedList::LinkedList(int val) {
-	Node *temp = new Node(val);
-	head = temp;
-	tail = temp;
-	length = 0;
-}
+//LinkedList::LinkedList(int val)  {
+//	auto temp = new LinkedList::Node(val);
+//	head = temp;
+//	tail = temp;
+//	length = 0;
+//}
 
 //LinkedList::~LinkedList() {
 //	if(head == tail) {
@@ -38,20 +32,20 @@ LinkedList::LinkedList(int val) {
 //	}
 //}
 
-LinkedList::LinkedList(): length(1){
-	head = tail =  new Node();
+LinkedList::LinkedList() {
+	head = tail = new Node;
 }
 
 
-void LinkedList::push_back(int val) {
-	Node *temp = new Node(val);
+void LinkedList::push_back(int val_) {
+	Node *temp = new Node(val_);
 	tail->next = temp;
 	tail = temp;
 	length++;
 }
 
-void LinkedList::push_front(int val) {
-	Node *temp = new Node(val);
+void LinkedList::push_front(int val_) {
+	Node *temp = new Node(val_);
 	temp->next = head;
 	head = temp;
 	length++;
